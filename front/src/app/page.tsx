@@ -2,6 +2,7 @@
 import { TextField, Button, CircularProgress, Container } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
+import BottomNav from "./bottomNav"
 
 export default function BarcodePage() {
   const [barcode, setBarcode] = useState<string>("");
@@ -30,8 +31,9 @@ export default function BarcodePage() {
 
   return (
     <Container maxWidth="sm" sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, height: "100vh", justifyContent: "center" }}>
+      <img src="/logo.png" alt="Reciclagem Elza" style={{ width: 150, marginBottom: 20 }} />
       <TextField
-        label="Código de Barras"
+        label="Insira o Código de Barras"
         variant="outlined"
         value={barcode}
         onChange={handleBarcodeChange}
@@ -39,9 +41,10 @@ export default function BarcodePage() {
         fullWidth
       />
       {/* Adicionar botão para acionar o leitor de codigo de barras */}
-      <Button variant="contained" color="primary" onClick={handleSubmit} disabled={loading} fullWidth>
+      <Button variant="contained" sx={{backgroundColor: "#768C64"}} onClick={handleSubmit} disabled={loading} fullWidth>
         {loading ? <CircularProgress size={24} /> : "Enviar"}
       </Button>
-    </Container>
+      <BottomNav />     
+   </Container>
   );
 }
